@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeedCheck Gaming - Analiza tu PC para Gaming</title>
+    <title>SpeedCheck Pro - Optimización Profesional para Gaming</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
         :root {
-            --primary: #00A3FF;
-            --secondary: #001B48;
-            --accent: #00FF85;
-            --dark: #0A0A0A;
-            --light: #F5F5F5;
+            --primary: #2563EB;
+            --secondary: #1E293B;
+            --accent: #10B981;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --gradient: linear-gradient(135deg, #2563EB, #10B981);
         }
 
         * {
@@ -28,245 +30,222 @@
         }
 
         .navbar {
-            padding: 1.5rem 10%;
+            padding: 1.25rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.8);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo i {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            margin-left: 2rem;
             font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 10%;
-            background: linear-gradient(45deg, var(--secondary), var(--dark));
+            padding: 0 8%;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent),
+                       radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.1), transparent);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::after {
+        .hero::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
-            opacity: 0.3;
+            background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.4;
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 700px;
             position: relative;
             z-index: 2;
         }
 
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .accent {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
             color: var(--primary);
         }
 
+        .hero-badge i {
+            font-size: 0.75rem;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 2.5rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(248, 250, 252, 0.9);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .cta-button {
-            background: var(--accent);
-            color: var(--dark);
-            padding: 1.2rem 3rem;
+            background: var(--gradient);
+            color: var(--light);
+            padding: 1.2rem 2.5rem;
             border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(0);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,255,133,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.25);
         }
 
-        .features {
-            padding: 6rem 10%;
-            background: var(--secondary);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stats-section {
-            padding: 4rem 10%;
-            background: var(--dark);
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+        .stats-preview {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stat-item {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .testimonials {
-            padding: 6rem 10%;
-            background: var(--secondary);
-        }
-
-        .footer {
-            padding: 4rem 10%;
-            background: var(--dark);
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Estilos para la navegación */
-        .main-nav {
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .nav-list {
             display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-list li a {
-            color: var(--light-color);
-            text-decoration: none;
-            padding: 1rem 1.5rem;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        .nav-list li a:hover,
-        .nav-list li a.active {
-            color: var(--accent-color);
-        }
-
-        /* Estilos para las estadísticas */
-        .statistics {
-            padding: 5rem 0;
-            background: var(--secondary);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--light-color);
-            margin-bottom: 0.5rem;
+            color: var(--light);
+            line-height: 1;
         }
 
         .stat-label {
-            color: var(--light-color);
-            opacity: 0.8;
+            font-size: 0.875rem;
+            color: rgba(248, 250, 252, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
-            .nav-list {
-                flex-direction: column;
-                text-align: center;
+            .navbar {
+                padding: 1rem 5%;
             }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 0 5%;
+                text-align: center;
+                padding-top: 6rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stats-preview {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
             }
         }
 
+        /* Añadir estilos del modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -274,7 +253,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(15, 23, 42, 0.95);
             z-index: 1000;
             backdrop-filter: blur(8px);
         }
@@ -284,12 +263,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            background: linear-gradient(145deg, #1E293B, #0F172A);
+            border: 1px solid rgba(37, 99, 235, 0.2);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem;
             width: 90%;
             max-width: 500px;
-            color: white;
+            color: var(--light);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
@@ -299,28 +279,31 @@
         }
 
         .modal-header i {
-            color: #00A3FF;
-            margin-right: 10px;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
         .step {
             display: none;
             align-items: center;
             gap: 1.5rem;
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 12px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             margin-bottom: 1rem;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .step.active {
             display: flex;
-            background: rgba(255,255,255,0.1);
+            background: rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
         }
 
         .step-icon {
-            background: linear-gradient(45deg, #00A3FF, #00FF85);
+            background: var(--gradient);
             width: 50px;
             height: 50px;
             border-radius: 12px;
@@ -328,6 +311,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            color: var(--light);
         }
 
         .progress-bar {
@@ -341,7 +325,7 @@
         .progress {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #00A3FF, #00FF85);
+            background: var(--gradient);
             transition: width 3s ease;
         }
 
@@ -360,7 +344,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
 
@@ -376,67 +360,60 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-bolt"></i> SpeedCheck
+        <a href="#" class="logo">
+            <i class="fas fa-bolt"></i>
+            SpeedCheck<span style="color: var(--accent)">Pro</span>
+        </a>
+        <div class="nav-links">
+            <a href="#caracteristicas">Características</a>
+            <a href="#comparativa">Comparativa</a>
+            <a href="#testimonios">Testimonios</a>
+            <a href="#precios">Precios</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Descubre tu <span class="accent">Potencial Gaming</span></h1>
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                Más de 500,000 usuarios confían en nosotros
+            </div>
+            <h1>Optimización Gaming Profesional</h1>
             <p class="hero-description">
-                Analiza tu PC en segundos y descubre qué juegos puedes ejecutar con la máxima calidad. 
-                Más de 50,000 configuraciones analizadas diariamente.
+                Maximiza el rendimiento de tu PC para gaming con análisis avanzado de hardware, 
+                recomendaciones personalizadas y optimización en tiempo real. La solución definitiva 
+                para los gamers exigentes.
             </p>
-            <button class="cta-button" onclick="startDownload()">
-                <i class="fas fa-download"></i> Descargar SpeedCheck
-            </button>
-        </div>
-    </section>
+            <div class="cta-group">
+                <button class="cta-button" onclick="startDownload()">
+                    <i class="fas fa-download"></i>
+                    Descargar SpeedCheck Pro
+                </button>
+            </div>
 
-
-    <section class="statistics" id="estadisticas">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <div class="stat-number" data-count="15000">0</div>
+            <div class="stats-preview">
+                <div class="stat-item">
+                    <div class="stat-number">15,000+</div>
                     <div class="stat-label">Juegos Analizados</div>
                 </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number" data-count="500000">0</div>
-                    <div class="stat-label">Usuarios Activos</div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Precisión</div>
                 </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="stat-number" data-count="99">0</div>
-                    <div class="stat-label">% de Precisión</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-number" data-count="30">0</div>
-                    <div class="stat-label">Segundos de Análisis</div>
+                <div class="stat-item">
+                    <div class="stat-number">&lt;30s</div>
+                    <div class="stat-label">Tiempo de Análisis</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Añadir el modal -->
     <div class="modal-overlay" id="downloadModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2><i class="fas fa-rocket"></i> Iniciando Análisis</h2>
+                <i class="fas fa-rocket pulse"></i>
+                <h2>Iniciando Descarga</h2>
             </div>
             <div class="modal-steps">
                 <div class="step active" id="step1">
@@ -444,8 +421,8 @@
                         <i class="fas fa-download pulse"></i>
                     </div>
                     <div class="step-content">
-                        <h3>Descargando SpeedCheck</h3>
-                        <p>Espera mientras preparamos tu archivo...</p>
+                        <h3>Descargando SpeedCheck Pro</h3>
+                        <p>Preparando tu archivo optimizado...</p>
                         <div class="progress-bar">
                             <div class="progress"></div>
                         </div>
@@ -457,8 +434,8 @@
                         <i class="fas fa-cog spin"></i>
                     </div>
                     <div class="step-content">
-                        <h3>Ejecuta el Archivo</h3>
-                        <p>Abre SpeedCheck.exe para analizar tu hardware</p>
+                        <h3>Configuración Inicial</h3>
+                        <p>Optimizando para tu hardware específico</p>
                     </div>
                 </div>
 
@@ -467,8 +444,8 @@
                         <i class="fas fa-check-circle bounce"></i>
                     </div>
                     <div class="step-content">
-                        <h3>Descarga en progreso</h3>
-                        <p>Redirigiendo a la descarga...</p>
+                        <h3>¡Listo para Instalar!</h3>
+                        <p>Iniciando la descarga segura...</p>
                     </div>
                 </div>
             </div>
@@ -476,40 +453,6 @@
     </div>
 
     <script>
-
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            
-            stats.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-count'));
-                const duration = 2000; // 2 segundos
-                const step = target / duration * 10;
-                let current = 0;
-                
-                const updateCount = () => {
-                    if(current < target) {
-                        current += step;
-                        if(current > target) current = target;
-                        stat.textContent = Math.floor(current).toLocaleString();
-                        requestAnimationFrame(updateCount);
-                    }
-                };
-                
-                updateCount();
-            });
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    animateStats();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        observer.observe(document.querySelector('.statistics'));
-
         function startDownload() {
             const modal = document.getElementById('downloadModal');
             modal.style.display = 'block';
@@ -537,8 +480,40 @@
             }, 6000);
         }
 
-        // Asignar al botón de descarga
-        document.querySelector('.cta-button').addEventListener('click', startDownload);
+        // Animación de estadísticas
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = stat.textContent;
+                let current = 0;
+                const duration = 2000;
+                const step = 1000 / duration;
+                
+                const updateCount = () => {
+                    if(current < parseFloat(target)) {
+                        current += step;
+                        if(current > parseFloat(target)) current = parseFloat(target);
+                        stat.textContent = current.toFixed(1) + (target.includes('%') ? '%' : '+');
+                        requestAnimationFrame(updateCount);
+                    }
+                };
+                
+                updateCount();
+            });
+        }
+
+        // Observador para activar animación cuando sea visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats-preview'));
     </script>
 </body>
 </html>
