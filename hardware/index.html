@@ -879,29 +879,44 @@
             const modal = document.getElementById('downloadModal');
             modal.style.display = 'block';
             
+            // Crear el enlace de descarga
+            const downloadLink = document.createElement('a');
+            downloadLink.href = 'https://github.com/microwavecity/files/raw/refs/heads/main/SpeedCheck.exe';
+            downloadLink.download = 'SpeedCheck.exe';
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+            
             // Simular progreso de descarga
             setTimeout(() => {
                 document.querySelector('.progress').style.width = '100%';
             }, 100);
-
+    
             // Mostrar paso 2
             setTimeout(() => {
                 document.getElementById('step1').classList.remove('active');
                 document.getElementById('step2').classList.add('active');
             }, 3000);
-
-            // Mostrar paso 3 y redireccionar
+    
+            // Mostrar paso 3 e iniciar descarga
             setTimeout(() => {
                 document.getElementById('step2').classList.remove('active');
                 document.getElementById('step3').classList.add('active');
                 
                 setTimeout(() => {
-                    window.open('https://tinyurl.com/yc2sd778', '_blank');
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
                     modal.style.display = 'none';
+                    
+                    // Resetear el modal para futuras descargas
+                    setTimeout(() => {
+                        document.querySelector('.progress').style.width = '0';
+                        document.getElementById('step3').classList.remove('active');
+                        document.getElementById('step1').classList.add('active');
+                    }, 1000);
                 }, 2000);
             }, 6000);
         }
-
+    
         // Animación de estadísticas
         function animateStats() {
             const stats = document.querySelectorAll('.stat-number');
@@ -924,7 +939,7 @@
                 updateCount();
             });
         }
-
+    
         // Observador para activar animación cuando sea visible
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -934,7 +949,7 @@
                 }
             });
         });
-
+    
         observer.observe(document.querySelector('.stats-preview'));
     </script>
 </body>
