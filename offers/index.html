@@ -5,88 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Cuenta</title>
     <style>
-        /* Estilos para el contenedor del iframe y el loader */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Evita barras de scroll innecesarias */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
             background-color: #f0f2f5;
-        }
-        #iframe-container {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        /* Estilos del loader (se mostrará si el iframe tarda en cargar) */
-        .loader {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
             text-align: center;
+            padding: 20px;
         }
         .spinner {
-            width: 50px; height: 50px; border: 5px solid rgba(0,0,0,0.1);
-            border-left-color: #007bff; border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0,0,0,0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-
-    <!-- El iframe se insertará aquí. Empezamos con un loader de reserva. -->
-    <div id="loader-container" class="loader">
-        <div>
-            <div class="spinner"></div>
-            <p>Cargando verificación...</p>
-        </div>
+    
+    <div class="container" id="loader">
+        <div class="spinner"></div>
+        <h1>Cargando verificación...</h1>
     </div>
 
     <script type="text/javascript">
-        // 1. CAPTURAMOS EL SUBID DE LA URL
+        // 1. CAPTURAMOS EL ID DE SEGUIMIENTO DE LA URL
+        // Usamos 'tracking_id' para ser consistentes con la documentación de CPAGrip.
         const params = new URLSearchParams(window.location.search);
-        const subid = params.get('subid');
+        const trackingId = params.get('tracking_id');
 
-        if (subid) {
-            // 2. CREAMOS EL IFRAME
-            const iframe = document.createElement('iframe');
-            iframe.id = 'iframe-container';
-            iframe.scrolling = 'yes'; // O 'auto'
-            iframe.frameBorder = '0';
+        if (trackingId) {
+            // Ocultamos el spinner para que el script pueda tomar el control total.
+            document.getElementById('loader').style.display = 'none';
+
+            // 2. CONSTRUIMOS LA URL DEL SCRIPT CON EL ID DE SEGUIMIENTO
+            const scriptUrl = 'https://filestrue.com/script_include.php?id=1843441&tracking_id=' + trackingId;
+            const scriptTagString = '<script type="text/javascript" src="' + scriptUrl + '"><\/script>';
+
+            // 3. INYECTAMOS EL SCRIPT USANDO document.write() PARA MÁXIMA COMPATIBILIDAD
+            document.write(scriptTagString);
             
-            // Reemplazamos el loader con el iframe vacío
-            document.body.innerHTML = ''; // Limpiamos el body
-            document.body.appendChild(iframe);
-
-            // 3. CONSTRUIMOS EL HTML QUE IRÁ DENTRO DEL IFRAME
-            // Este HTML contendrá el script del proveedor
-            const iframeContent = `
-                <!DOCTYPE html>
-                <html>
-                <head><title>Verification</title></head>
-                <body>
-                    <script type="text/javascript" src="https://filestrue.com/script_include.php?id=1843441&subid=${subid}"><\/script>
-                    <noscript>Please enable JavaScript.<meta http-equiv="refresh" content="0;url=https://filestrue.com/help/enable_javascript.php?lkt=1" /></noscript>
-                </body>
-                </html>
-            `;
-
-            // 4. ESCRIBIMOS ESE HTML DENTRO DEL IFRAME
-            // Esta es la forma correcta de manejar document.write en un entorno aislado
-            iframe.contentWindow.document.open();
-            iframe.contentWindow.document.write(iframeContent);
-            iframe.contentWindow.document.close();
-
         } else {
-            // Si no hay subid, mostramos un error
-            document.getElementById('loader-container').innerHTML = '<h1>Error: Falta el ID de verificación.</h1>';
-            console.error("Error: El SubID no fue encontrado en la URL.");
+            // Si no hay ID, mostramos un error claro.
+            document.getElementById('loader').innerHTML = '<h1>Error: Falta el ID de verificación.</h1>';
+            console.error("Error: El tracking_id no fue encontrado en la URL.");
         }
     </script>
+    
+    <noscript>
+        Please enable JavaScript to access this page.
+        <meta http-equiv="refresh" content="0;url=https://filestrue.com/help/enable_javascript.php?lkt=1" />
+    </noscript>
 
 </body>
 </html>
