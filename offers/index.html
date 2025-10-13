@@ -1,78 +1,272 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Cuenta</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #333;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(0,0,0,0.1);
-            border-left-color: #007bff;
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-            animation: spin 1s linear infinite;
-        }
-        h1 {
-            font-size: 22px;
-            font-weight: 600;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Homemade Sushi Masterclass</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     
-    <div class="container" id="loader">
-        <div class="spinner"></div>
-        <h1>Cargando verificación...</h1>
-    </div>
-
-    <script type="text/javascript">
-        // 1. CAPTURAMOS EL ID DE SEGUIMIENTO DE LA URL
-        // Usamos 'tracking_id' para ser consistentes con la documentación de CPAGrip.
-        const params = new URLSearchParams(window.location.search);
-        const trackingId = params.get('tracking_id');
-
-        if (trackingId) {
-            // Ocultamos el spinner para que el script pueda tomar el control total.
-            document.getElementById('loader').style.display = 'none';
-
-            // 2. CONSTRUIMOS LA URL DEL SCRIPT CON EL ID DE SEGUIMIENTO
-            const scriptUrl = 'https://filestrue.com/script_include.php?id=1843441&tracking_id=' + trackingId;
-            const scriptTagString = '<script type="text/javascript" src="' + scriptUrl + '"><\/script>';
-
-            // 3. INYECTAMOS EL SCRIPT USANDO document.write() PARA MÁXIMA COMPATIBILIDAD
-            document.write(scriptTagString);
-            
-        } else {
-            // Si no hay ID, mostramos un error claro.
-            document.getElementById('loader').innerHTML = '<h1>Error: Falta el ID de verificación.</h1>';
-            console.error("Error: El tracking_id no fue encontrado en la URL.");
+    <!-- CONFIGURACIÓN DE TAILWIND CON LA NUEVA PALETA COMPLEMENTARIA -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a2c51", // Azul Índigo Profundo (Calma, Calidad)
+                        "accent": "#f97316", // Naranja Salmón Vibrante (Energía, Apetito, CTA)
+                        "background-light": "#faf8f5", // Blanco Roto (Calidez, Papel de arroz)
+                        "background-dark": "#111827", // Gris azulado muy oscuro
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Lato", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
         }
     </script>
     
-    <noscript>
-        Please enable JavaScript to access this page.
-        <meta http-equiv="refresh" content="0;url=https://filestrue.com/help/enable_javascript.php?lkt=1" />
-    </noscript>
+    <!-- ANIMACIONES ACTUALIZADAS CON EL COLOR DE ACENTO (NARANJA) -->
+    <style>
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); /* Naranja de acento */
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px 10px rgba(249, 115, 22, 0); /* Naranja de acento */
+            }
+        }
+        .animate-pulse-neon {
+            animation: pulse 2s infinite;
+        }
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 0 5px #fef08a, 0 0 10px #fef08a; }
+            50% { box-shadow: 0 0 15px #fef08a, 0 0 25px #fef08a; }
+        }
+        .animate-badge-glow {
+            animation: badge-glow 1.5s ease-in-out infinite;
+        }
+    </style>
+
+    <!-- SCRIPT PARA CARGAR POPUP (SIN CAMBIOS) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctaElements = document.querySelectorAll('button, a[href="#"]');
+            ctaElements.forEach(element => {
+                element.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (!document.getElementById('ogjs')) {
+                        const script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.id = 'ogjs';
+                        script.src = 'https://applocked.org/cl/js/ve9n9m';
+                        document.body.appendChild(script);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-gray-800 dark:text-gray-200">
+<div class="relative w-full flex flex-col overflow-x-hidden">
+
+<!-- HERO CON FONDO AZUL PRIMARIO Y BOTÓN NARANJA COMPLEMENTARIO -->
+<div class="bg-primary shadow-lg">
+<div class="container mx-auto px-6 py-16 lg:py-24">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="lg:w-1/2 flex flex-col gap-6 text-center lg:text-left">
+<div class="inline-block self-center lg:self-start bg-yellow-300 text-yellow-900 text-sm font-bold px-4 py-2 rounded-full animate-badge-glow">
+                            FREE TODAY ONLY
+                        </div>
+<h1 class="font-display text-4xl lg:text-6xl font-bold text-white leading-tight">
+                            Unlock the Secrets of Restaurant-Quality Sushi at Home — FREE eBook Download
+                        </h1>
+<h2 class="text-lg lg:text-xl text-white/80">
+                            Exclusivity for our community: Master the art of sushi, from perfect rice to exquisite rolls.
+                        </h2>
+<div class="mt-4">
+<button class="bg-accent text-white font-bold text-lg py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                                Claim My Free Copy
+                            </button>
+</div>
+</div>
+<div class="lg:w-1/2 flex justify-center">
+<div class="w-full max-w-sm bg-center bg-no-repeat bg-cover rounded-xl shadow-2xl aspect-[3/4]" style='background-image: url("https://m.media-amazon.com/images/I/71NrJqw7lgL._UF1000,1000_QL80_.jpg");'></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SECCIÓN DE ESTADÍSTICAS USANDO LA PALETA COMPLEMENTARIA -->
+<div class="bg-background-light dark:bg-black/20 py-8">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<div class="bg-primary text-white p-6 rounded-lg shadow-lg">
+<p class="font-display text-4xl font-bold">12,000+</p>
+<p class="text-lg">Happy Downloads</p>
+</div>
+<div class="bg-accent text-white p-6 rounded-lg shadow-lg">
+<p class="font-display text-4xl font-bold">4.9/5</p>
+<p class="text-lg">Average Rating</p>
+</div>
+<div class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-6 rounded-lg shadow-lg">
+<p class="font-display text-4xl font-bold">As Seen In</p>
+<p class="text-lg">Major Food Blogs</p>
+</div>
+</div>
+</div>
+</div>
+<div class="container mx-auto px-6 py-16 lg:py-24">
+<div class="text-center mb-12">
+<h2 class="font-display text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">Why This Is a Must-Have eBook</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mt-2">Everything you need to become a sushi connoisseur.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- ICONOS Y ELEMENTOS DE ÉNFASIS EN EL COLOR NARANJA DE ACENTO -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center">
+<div class="flex justify-center text-accent mb-4">
+<svg fill="currentColor" height="48" viewBox="0 0 256 256" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M244,128a8,8,0,0,1-8,8H136v96a8,8,0,0,1-16,0V136H20a8,8,0,0,1,0-16h92V20a8,8,0,0,1,16,0v92h100A8,8,0,0,1,244,128Z"></path></svg>
+</div>
+<h3 class="font-display text-xl font-bold text-gray-900 dark:text-white mb-2">Beginner Friendly</h3>
+<p class="text-gray-600 dark:text-gray-400">Step-by-step visual guides that make complex techniques simple and fun.</p>
+</div>
+<div class="bg-white dark:bg-background-dark p-8 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center">
+<div class="flex justify-center text-accent mb-4">
+<svg fill="currentColor" height="48" viewBox="0 0 256 256" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM176,80a16,16,0,1,1-16,16A16,16,0,0,1,176,80Z"></path></svg>
+</div>
+<h3 class="font-display text-xl font-bold text-gray-900 dark:text-white mb-2">Authentic Recipes</h3>
+<p class="text-gray-600 dark:text-gray-400">Learn classic rolls and discover creative recipes you won't find anywhere else.</p>
+</div>
+<div class="bg-white dark:bg-background-dark p-8 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center">
+<div class="flex justify-center text-accent mb-4">
+<svg fill="currentColor" height="48" viewBox="0 0 256 256" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M228.4,72.78l-96-64a8,8,0,0,0-8.8,0l-96,64A8,8,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A8,8,0,0,0,228.4,72.78ZM216,200H40V80l88-58.64L216,80Z"></path></svg>
+</div>
+<h3 class="font-display text-xl font-bold text-gray-900 dark:text-white mb-2">Pro Secrets</h3>
+<p class="text-gray-600 dark:text-gray-400">Tips on sourcing ingredients, essential knife skills, and plating like a chef.</p>
+</div>
+</div>
+<div class="text-center mt-12">
+<a class="text-lg font-semibold text-accent dark:text-orange-400 hover:underline" href="#">Ready to start rolling? Download Now →</a>
+</div>
+<div class="mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="font-display text-3xl font-bold text-gray-900 dark:text-white mb-4">What’s Inside?</h2>
+<ul class="space-y-3">
+<li class="flex items-center gap-3">
+<svg class="w-6 h-6 text-green-600" fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM114.18,157.87a8,8,0,0,0,11.31,0l48-48a8,8,0,0,0-11.31-11.32L120,140.69,93.82,114.5a8,8,0,0,0-11.31,11.32Z"></path></svg>
+<span class="text-lg text-gray-700 dark:text-gray-300">Step-by-step sushi rolling techniques</span>
+</li>
+<li class="flex items-center gap-3">
+<svg class="w-6 h-6 text-green-600" fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM114.18,157.87a8,8,0,0,0,11.31,0l48-48a8,8,0,0,0-11.31-11.32L120,140.69,93.82,114.5a8,8,0,0,0-11.31,11.32Z"></path></svg>
+<span class="text-lg text-gray-700 dark:text-gray-300">Sourcing the freshest ingredients</span>
+</li>
+<li class="flex items-center gap-3">
+<svg class="w-6 h-6 text-green-600" fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM114.18,157.87a8,8,0,0,0,11.31,0l48-48a8,8,0,0,0-11.31-11.32L120,140.69,93.82,114.5a8,8,0,0,0-11.31,11.32Z"></path></svg>
+<span class="text-lg text-gray-700 dark:text-gray-300">Knife skills for perfect cuts</span>
+</li>
+<li class="flex items-center gap-3">
+<svg class="w-6 h-6 text-green-600" fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM114.18,157.87a8,8,0,0,0,11.31,0l48-48a8,8,0,0,0-11.31-11.32L120,140.69,93.82,114.5a8,8,0,0,0-11.31,11.32Z"></path></svg>
+<span class="text-lg text-gray-700 dark:text-gray-300">Creating delicious sauces and toppings</span>
+</li>
+<li class="flex items-center gap-3">
+<svg class="w-6 h-6 text-green-600" fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128ZM114.18,157.87a8,8,0,0,0,11.31,0l48-48a8,8,0,0,0-11.31-11.32L120,140.69,93.82,114.5a8,8,0,0,0-11.31,11.32Z"></path></svg>
+<span class="text-lg text-gray-700 dark:text-gray-300">Sustainable seafood choices</span>
+</li>
+</ul>
+<div class="mt-8">
+<button class="w-full bg-accent text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-accent/90 transition-colors">
+                            I want these secrets!
+                        </button>
+</div>
+</div>
+<div>
+<div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-2xl">
+<div class="bg-cover bg-center rounded-lg aspect-video" style='background-image: url("https://comerjapones.com/wp-content/uploads/sakura-ya-sushi-moriawase.jpg")'></div>
+</div>
+</div>
+</div>
+<div class="mt-16 lg:mt-24">
+<div class="text-center mb-12">
+<h2 class="font-display text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">Rave Reviews From Home Cooks</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- REVIEWS CON UN SUTIL FONDO NARANJA PÁLIDO -->
+<div class="bg-accent/10 dark:bg-accent/20 p-8 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDr7kANbT8lsppRe_eDKpWDX0tIqdU4utpczf_OQo1EdHy6pI2O4tdX5iH5cyg3hz-F8MxgYACkND-LT7KTq0cB4Wco7-_TZJpQXuyeM6po42MfSPVoqOvUcmoYdeN_OqpiecQRYATr2MUwNIKyUYSCTTES75B7Yzl1EeXm07Ew2I1UmC7WbokFZKY1p_HEpczWQQi5Gi3hl5aHhzvSUQuAV1p1_f56lT8L2rpt-xdQ_o38hEV_q6pYWYHTL6RomB7x2g4pAWCL82LY");'></div>
+<div class="ml-4">
+<p class="font-bold text-gray-900 dark:text-white">Emily Carter</p>
+<div class="flex text-yellow-400">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <!-- 5 stars -->
+</div>
+</div>
+</div>
+<p class="text-gray-600 dark:text-gray-300 italic">"This ebook is a game-changer! I never thought I could make sushi this good at home. The instructions are clear, and the tips are invaluable."</p>
+</div>
+<div class="bg-accent/10 dark:bg-accent/20 p-8 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0ldftzbjAZWuCMSDXRj7dRnv22uSLXzvxk87FPhg0ScNNxNMKlIZDhFAgLS18nKxZd8j4wAsAauaK3OUpF0_IchHT8zxjRrua0G6-X8nXzvjNZKDNGMeKuOggYV2_lJW2I5IWZ9youbCAl2q9Z-O7GqEmj1eXFaCapWFCndwV25FRXD3av7FufJQoV0_u2iZV9ANW1BQSKNyhrXAaAVRiy8RsHiqOhVfavl1mkGRnc81XdkmQy_fmyt0lFm3rZ_plHrFOVjqLM2ba");'></div>
+<div class="ml-4">
+<p class="font-bold text-gray-900 dark:text-white">David Lee</p>
+<div class="flex text-yellow-400">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <!-- 5 stars -->
+</div>
+</div>
+</div>
+<p class="text-gray-600 dark:text-gray-300 italic">"As a beginner, I was intimidated by sushi making, but this masterclass made it so approachable. The results were amazing, and my family loved it!"</p>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="bg-transparent border-2 border-accent text-accent dark:border-orange-400 dark:text-orange-400 font-bold text-lg py-3 px-8 rounded-lg shadow-lg transform hover:bg-accent hover:text-white dark:hover:bg-orange-400 dark:hover:text-gray-900 transition-colors duration-300">
+                    See what the hype is about
+                </button>
+</div>
+</div>
+</div>
+<!-- SECCIÓN FINAL CTA CON EL FONDO NARANJA VIBRANTE Y BOTÓN AZUL PARA MÁXIMO CONTRASTE -->
+<div class="bg-accent mt-16">
+<div class="container mx-auto px-6 py-20 text-center">
+<h2 class="font-display text-3xl lg:text-4xl font-bold text-white">Your Culinary Adventure Awaits!</h2>
+<div class="my-4 flex items-center justify-center gap-4">
+<span class="text-2xl text-white/70 line-through">$29.99</span>
+<span class="text-5xl font-extrabold text-yellow-300">FREE!</span>
+</div>
+<p class="text-white/80 max-w-2xl mx-auto mb-8">
+                    Stop dreaming and start rolling. Get your free copy of "Homemade Sushi Masterclass" now and impress everyone with your skills. This is a limited-time offer!
+                </p>
+<button class="bg-primary text-white font-bold text-xl lg:text-2xl py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 animate-pulse-neon">
+<span class="truncate">GET MY FREE EBOOK NOW</span>
+</button>
+<div class="mt-6 flex items-center justify-center gap-4 text-white/70">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208Z"></path></svg>
+<span>100% Satisfaction Guaranteed | Privacy Safe</span>
+</div>
+</div>
+</div>
+<!-- FOOTER CON EL COLOR PRIMARIO AZUL -->
+<footer class="bg-primary text-gray-400 py-8">
+<div class="container mx-auto px-6 text-center">
+<div class="flex justify-center gap-6 mb-4">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+<p class="text-sm">© 2024 Sushi Masterclass. All rights reserved.</p>
+</div>
+</footer>
+</div>
 
 </body>
 </html>
